@@ -25,7 +25,7 @@ public class mainEmpleados {
         return DriverManager.getConnection(url, user, password);
     }
     public static void main(String[] args) throws SQLException, IOException {
-        
+
         sc = new Scanner(System.in);
         int opc;
         do {
@@ -79,8 +79,7 @@ public class mainEmpleados {
         PreparedStatement ps = cnx.prepareStatement(
                 "INSERT INTO empleado (CodEmp,CodDep,ExTelEmp,FecInEmp,FecNaEmp,NifEmp,NomEmp,NumHi,SalEmp) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        Scanner br = new Scanner(new InputStreamReader(System.in));
-
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Escribe el NIF del empleado.");
 
         String nif = br.readLine();
@@ -219,6 +218,7 @@ public class mainEmpleados {
     }
 
 
+
     public static empleados findName(String nom) throws SQLException{
         PreparedStatement ps = cnx.prepareStatement("SELECT * FROM empleado WHERE NomEmp = ?");
         ps.setString(1, nom);
@@ -244,7 +244,7 @@ public class mainEmpleados {
         ps.setString(7, nom);
         ps.setInt(8, e.getNumHi());
         ps.setDouble(9,e.getSalEmp());
-        ps.setString(10,e.getNombreEmp());
+        ps.setString(10,e.getNomEmp());
         ps.executeUpdate();
         ps.close();
     }
@@ -265,51 +265,51 @@ public class mainEmpleados {
                 System.out.println("Nuevo codigo de departamento .");
                 String CodDep = sc.next();
                 e.setCodDep(CodDep);
-                actualiza(e,e.getNombreEmp());
+                actualiza(e,e.getNomEmp());
             }
             case 2 ->{
                 System.out.println("Nuevo telefono .");
                 String TelEmp = sc.next();
                 e.setExTelEmp(TelEmp);
-                actualiza(e,e.getNombreEmp());
+                actualiza(e,e.getNomEmp());
             }
             case 3 ->{
                 System.out.println("Nuevo fecha de inicio .");
                 String FechaInicio = sc.next();
                 LocalDate FecIn = LocalDate.parse(FechaInicio, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 e.setFecInEmp(FecIn);
-                actualiza(e,e.getNombreEmp());
+                actualiza(e,e.getNomEmp());
             }
             case 4 ->{
                 System.out.println("Nuevo fecha de nacimiento .");
                 String FechaNacimiento = sc.next();
                 LocalDate FecNa = LocalDate.parse(FechaNacimiento, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 e.setFecNaEmp(FecNa);
-                actualiza(e,e.getNombreEmp());
+                actualiza(e,e.getNomEmp());
             }
             case 5 ->{
                 System.out.println("Nuevo NIF .");
                 String Nif = sc.next();
                 e.setNifEmp(Nif);
-                actualiza(e,e.getNombreEmp());
+                actualiza(e,e.getNomEmp());
             }
             case 6 ->{
                 System.out.println("Nuevo nombre .");
                 String Nombre = sc.next();
-                e.setNombreEmp(Nombre);
-                actualiza(e,e.getNombreEmp());
+                e.setNomEmp(Nombre);
+                actualiza(e,e.getNomEmp());
             }
             case 7 ->{
                 System.out.println("Nueva cantidad de hijos.");
                 int NumHi = sc.nextInt();
                 e.setNumHi(NumHi);
-                actualiza(e,e.getNombreEmp());
+                actualiza(e,e.getNomEmp());
             }
             case 8 ->{
                 System.out.println("Nuevo sueldo .");
                 double Sueldo = sc.nextDouble();
                 e.setSalEmp(Sueldo);
-                actualiza(e,e.getNombreEmp());
+                actualiza(e,e.getNomEmp());
             }
         }
         System.out.println("Datos registrados exitosamente.");
